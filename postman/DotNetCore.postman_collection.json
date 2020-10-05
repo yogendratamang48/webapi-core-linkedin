@@ -251,13 +251,33 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Colorful t-shirt\",\r\n    \"sku\": \"CTSCHEAP123\",\r\n    \"id\": 34,\r\n    \"price\": 6.99,\r\n    \"categoryId\": 1,\r\n    \"isAvailable\": true\r\n}",
+							"raw": "{\r\n    \"name\": \"Colorful t-shirt\",\r\n    \"sku\": \"CTSCHEAP123\",\r\n    \"id\": 34,\r\n    \"price\":29.99,\r\n    \"categoryId\": 1,\r\n    \"isAvailable\": true\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
+						"url": {
+							"raw": "https://localhost:5001/products/34",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"products",
+								"34"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
 						"url": {
 							"raw": "https://localhost:5001/products/34",
 							"protocol": "https",
