@@ -164,6 +164,17 @@ public async Task<ActionResult<Product>> PostProduct([FromBody] Product product)
         }
 ```
 
+### Updating Item
+
+```cs
+[HttpPut("{id})]
+public async Task<IActionResult> PutProduct(int id, [FromBody] Product product) {
+    _context.Entry(product).State = EntityState.Modified;
+    await _context.SaveChangesAsync();
+    return NoContent();
+}
+```
+
 ## References
 
 - https://www.linkedin.com/learning/building-web-apis-with-asp-dot-net-core-3
