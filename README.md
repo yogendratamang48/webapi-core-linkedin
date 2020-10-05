@@ -58,3 +58,11 @@
     queryParameters.Name.ToLower()
 ));
 ```
+
+### Sorting
+
+- Field is dynamic, we will use extensions.
+
+```
+sortBy=Price&sortOrder=desc
+```
