@@ -59,7 +59,7 @@ namespace webapi_core.Controllers
 
         // [HttpGet, Route("/products/{id}")]
         [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetProducts(int id)
+        public async Task<IActionResult> GetProduct(int id)
         {
             var product = await _context.Products.FindAsync(id);
             if (product == null)
@@ -68,6 +68,18 @@ namespace webapi_core.Controllers
             }
             return Ok(product);
 
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Product>> PostProduct([FromBody] Product product)
+        {
+            _context.Products.Add(product);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction(
+                "GetProduct",
+                new { id = product.Id },
+                product
+            );
         }
 
     }

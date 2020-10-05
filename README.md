@@ -109,6 +109,61 @@ if (!string.IsNullOrEmpty(queryParameters.SortBy))
 
 ## 4. Writing Data
 
+### REST with HTTP Verbs
+
+| HTTP Verb |       Function       |
+| --------- | :------------------: |
+| GET       |      Read data       |
+| POST      |   Create new data    |
+| PUT       | Update existing data |
+| DELETE    | Delete Existing data |
+
+### Model Binding
+
+1. [FromBody]: Data from http request (mostly POST/PUT)
+1. [FromRoute]: Data from route template
+1. [FromQuery]: Data from URL
+
+### Model Validation
+
+By Default [ApiController] handles automated HTTP validation rules. However if you want to disable this.
+Update `Startup.cs` file like this:
+
+```cs
+ services.AddControllers()
+            .ConfigureApiBehaviorOptions(options =>
+            {
+                options.SuppressModelStateInvalidFilter = true;
+            });
+        }
+```
+
+- You can use annotations.
+
+```cs
+[Required]
+public string Name {get; set; }
+[MaxLength(255)]
+public string Description {get; set; }
+```
+
+### Adding Items
+
+- Signature will be like this:
+
+```cs
+public async Task<ActionResult<Product>> PostProduct([FromBody] Product product)
+        {
+            _context.Products.Add(product);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction(
+                "GetProduct",
+                new { id = product.Id },
+                product
+            );
+        }
+```
+
 ## References
 
 - https://www.linkedin.com/learning/building-web-apis-with-asp-dot-net-core-3
