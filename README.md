@@ -52,3 +52,9 @@
 ```
 
 ### Searching
+
+```cs
+.Where(p => p.Name.ToLower().Contains(
+    queryParameters.Name.ToLower()
+));
+```
