@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using webapi_core.Classes;
 using webapi_core.Models;
 
 namespace webapi_core.Controllers
@@ -20,10 +21,13 @@ namespace webapi_core.Controllers
             _context.Database.EnsureCreated();
         }
         [HttpGet]
-        public async Task<IActionResult> GetAllProducts()
+        public async Task<IActionResult> GetAllProducts([FromQuery] QueryParameters queryParameters)
         {
-            var products = await _context.Products.ToArrayAsync();
-            return Ok(products);
+            IQueryable<Product> products = _context.Products;
+            products = products
+            .Skip(queryParameters.Size * (queryParameters.Page - 1))
+            .Take(queryParameters.Size);
+            return Ok(await products.ToArrayAsync());
 
         }
 
