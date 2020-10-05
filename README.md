@@ -167,7 +167,7 @@ public async Task<ActionResult<Product>> PostProduct([FromBody] Product product)
 ### Updating Item
 
 ```cs
-[HttpPut("{id})]
+[HttpPut("{id}")]
 public async Task<IActionResult> PutProduct(int id, [FromBody] Product product) {
     _context.Entry(product).State = EntityState.Modified;
     await _context.SaveChangesAsync();
@@ -175,6 +175,22 @@ public async Task<IActionResult> PutProduct(int id, [FromBody] Product product) 
 }
 ```
 
+### Deleting Item
+
+- Usually returns deleted item
+
+```cs
+[HttpDelete("{id}")]
+public async Task<IActionResult> DeleteProduct(int id) {
+    _context.Products.Remove(p => p.Id==id);
+    await _context.SaveChangesAsync();
+}
+```
+
 ## References
 
 - https://www.linkedin.com/learning/building-web-apis-with-asp-dot-net-core-3
+
+```
+
+```
