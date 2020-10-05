@@ -25,3 +25,30 @@
 - Eg: MinPrice, MaxPrice
   decimal?
   Apply Where
+
+```cs
+        public async Task<IActionResult> GetAllProducts([FromQuery] ProductQueryParameters queryParameters)
+        {
+            IQueryable<Product> products = _context.Products;
+
+            if ((queryParameters.MinPrice != null) && (queryParameters.MaxPrice != null))
+            {
+                products = products.Where(
+                    p => p.Price >= queryParameters.MinPrice.Value &&
+                    p.Price <= queryParameters.MaxPrice.Value);
+
+            }
+            if (!string.IsNullOrEmpty(queryParameters.Sku))
+            {
+                products = products.Where(p => p.Sku == queryParameters.Sku);
+            }
+
+            products = products
+            .Skip(queryParameters.Size * (queryParameters.Page - 1))
+            .Take(queryParameters.Size);
+            return Ok(await products.ToArrayAsync());
+
+        }
+```
+
+### Searching
