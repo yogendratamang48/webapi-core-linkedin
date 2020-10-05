@@ -1,3 +1,8 @@
+## About the Repo
+
+- This project is follow-along + Chapter notes of this course:  
+  https://www.linkedin.com/learning/building-web-apis-with-asp-dot-net-core-3
+
 ## 3. Advanced Data Retrieval
 
 ### Pagination
@@ -101,3 +106,9 @@ if (!string.IsNullOrEmpty(queryParameters.SortBy))
                 }
             }
 ```
+
+## 4. Writing Data
+
+## References
+
+- https://www.linkedin.com/learning/building-web-apis-with-asp-dot-net-core-3
