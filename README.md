@@ -266,12 +266,23 @@ Then you can run:
 
 1. Swagger
 
+- Microsoft.Versioning.ApiExplorer
 -
 
 2. .NET Core Integration
 
 - NSwag.AspNetCore
 - Swashbuckle.AspNetCore
+
+## 6. Securing API
+
+- Enforcing HTTPS
+
+```cs
+app.UseHttpsRedirection();
+```
+
+- `UseHsts()`: Uses HTTP Strict Transport Security to instruct the client to use HTTPS.
 
 ## References
 

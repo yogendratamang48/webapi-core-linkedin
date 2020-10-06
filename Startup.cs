@@ -35,6 +35,16 @@ namespace webapi_core
             {
                 // options.SuppressModelStateInvalidFilter = true;
             });
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.WithOrigins("https://localhost:5002")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+                });
+
+            });
             services.AddApiVersioning(
                 options =>
                 {
@@ -59,6 +69,7 @@ namespace webapi_core
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors();
 
             app.UseAuthorization();
 
