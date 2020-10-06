@@ -187,10 +187,92 @@ public async Task<IActionResult> DeleteProduct(int id) {
 }
 ```
 
+### 5. Versioning
+
+- HTTP Header: for versioning (like `X-API-Version: 1.0`), Dedicated header
+- URL: eg. `/v1.0/products/` [Separates versions but gives up URI principle]
+- QueryString: `/products?api-version=1.0`
+
+#### Microsoft Versioning Library
+
+> `Package-Install Microsoft.AspNetCore.Mvc.Versioning`
+> OR  
+> Update `.csproj`
+
+```xml
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="4.1.1"/>
+```
+
+##### Update Startup.cs
+
+```cs
+ services.AddApiVersioning(
+                options =>
+                {
+                    options.ReportApiVersions = true;
+                    options.DefaultApiVersion = new ApiVersion(1, 0);
+                    options.AssumeDefaultVersionWhenUnspecified = true;
+                }
+            );
+```
+
+##### Using the URL
+
+```cs
+[ApiVersion("1.0")]
+[Route("/v{v:apiVersion}/products")]
+[ApiController]
+public class ProductsV1_0Controller : ControllerBase {}
+```
+
+- Response headers include version information  
+  ![Response Headers](imgs/5-api-version-response.png "Response Headers")
+
+##### Using HTTP Headers
+
+```cs
+[ApiVersion("1.0")]
+[ApiController]
+public class ProductsController : ControllerBase {}
+
+options.ApiVersionReader = new HeaderApiVersionReader("X-API-Version");
+```
+
+![Request Headers](imgs/5-header-versioning.png "Request Headers")
+
+##### Using QueryString
+
+- Add `api-version=2.0` as query string
+- Disable Header Versioning
+
+```cs
+services.AddApiVersioning(
+                options =>
+                {
+                    options.ReportApiVersions = true;
+                    options.DefaultApiVersion = new ApiVersion(1, 0);
+                    options.AssumeDefaultVersionWhenUnspecified = true;
+                    options.ApiVersionReader = new HeaderApiVersionReader("X-API-Version");
+
+                }
+            );
+```
+
+Then you can run:
+
+> `https://localhost:5001/products?api-version=2.0`
+
+#### Documentation:
+
+1. Swagger
+
+-
+
+2. .NET Core Integration
+
+- NSwag.AspNetCore
+- Swashbuckle.AspNetCore
+
 ## References
 
 - https://www.linkedin.com/learning/building-web-apis-with-asp-dot-net-core-3
-
-```
-
-```
