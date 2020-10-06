@@ -252,7 +252,7 @@ services.AddApiVersioning(
                     options.ReportApiVersions = true;
                     options.DefaultApiVersion = new ApiVersion(1, 0);
                     options.AssumeDefaultVersionWhenUnspecified = true;
-                    // options.ApiVersionReader = new HeaderApiVersionReader("X-API-Version");
+                    options.ApiVersionReader = new HeaderApiVersionReader("X-API-Version");
 
                 }
             );
@@ -261,6 +261,17 @@ services.AddApiVersioning(
 Then you can run:
 
 > `https://localhost:5001/products?api-version=2.0`
+
+#### Documentation:
+
+1. Swagger
+
+-
+
+2. .NET Core Integration
+
+- NSwag.AspNetCore
+- Swashbuckle.AspNetCore
 
 ## References
 

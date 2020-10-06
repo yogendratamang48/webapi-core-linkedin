@@ -41,7 +41,7 @@ namespace webapi_core
                     options.ReportApiVersions = true;
                     options.DefaultApiVersion = new ApiVersion(1, 0);
                     options.AssumeDefaultVersionWhenUnspecified = true;
-                    // options.ApiVersionReader = new HeaderApiVersionReader("X-API-Version");
+                    options.ApiVersionReader = new HeaderApiVersionReader("X-API-Version");
 
                 }
             );
