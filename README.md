@@ -228,7 +228,17 @@ public class ProductsV1_0Controller : ControllerBase {}
 - Response headers include version information  
   ![Response Headers](imgs/5-api-version-response.png "Response Headers")
 
-#### Using HTTP Headers
+##### Using HTTP Headers
+
+```cs
+[ApiVersion("1.0")]
+[ApiController]
+public class ProductsController : ControllerBase {}
+
+options.ApiVersionReader = new HeaderApiVersionReader("X-API-Version");
+```
+
+![Request Headers](imgs/5-header-versioning.png "Request Headers")
 
 ## References
 
