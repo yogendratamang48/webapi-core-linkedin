@@ -240,6 +240,28 @@ options.ApiVersionReader = new HeaderApiVersionReader("X-API-Version");
 
 ![Request Headers](imgs/5-header-versioning.png "Request Headers")
 
+##### Using QueryString
+
+- Add `api-version=2.0` as query string
+- Disable Header Versioning
+
+```cs
+services.AddApiVersioning(
+                options =>
+                {
+                    options.ReportApiVersions = true;
+                    options.DefaultApiVersion = new ApiVersion(1, 0);
+                    options.AssumeDefaultVersionWhenUnspecified = true;
+                    // options.ApiVersionReader = new HeaderApiVersionReader("X-API-Version");
+
+                }
+            );
+```
+
+Then you can run:
+
+> `https://localhost:5001/products?api-version=2.0`
+
 ## References
 
 - https://www.linkedin.com/learning/building-web-apis-with-asp-dot-net-core-3
