@@ -292,6 +292,19 @@ app.UseHttpsRedirection();
 
 ### IdentityServer
 
+## Further Security Related Courses
+
+### API Design
+
+- Designing RESTful APIs (Keith Caisy)
+
+### IdentityServer
+
+- https://www.linkedin.com/learning/asp-dot-net-core-security
+- https://www.linkedin.com/learning/asp-dot-net-core-security-2
+
+### ASP.NET Core Securities
+
 ## References
 
 - https://www.linkedin.com/learning/building-web-apis-with-asp-dot-net-core-3
