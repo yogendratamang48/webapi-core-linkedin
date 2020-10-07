@@ -284,6 +284,14 @@ app.UseHttpsRedirection();
 
 - `UseHsts()`: Uses HTTP Strict Transport Security to instruct the client to use HTTPS.
 
+### OAuth and OIDC
+
+- OAuth
+- OIDC
+- IdentityServer
+
+### IdentityServer
+
 ## References
 
 - https://www.linkedin.com/learning/building-web-apis-with-asp-dot-net-core-3
